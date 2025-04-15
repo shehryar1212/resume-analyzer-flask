@@ -21,9 +21,10 @@ app.add_middleware(
 )
 
 # 🔐 Set your Gemini API Key
-os.getenv(genai.configure(api_key="GEMINI_API_KEY") ) # Replace with your actual key
+api_key = os.getenv("GEMINI_API_KEY")
 
 model = genai.GenerativeModel("gemini-2.0-flash")
+genai.configure(api_key=api_key)
 
 @app.get("/")
 def read_root():
