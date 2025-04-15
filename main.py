@@ -25,9 +25,13 @@ app.add_middleware(
 genai.configure(api_key=api_key)
 model = genai.GenerativeModel("gemini-2.0-flash")
 
+from fastapi.responses import JSONResponse
+
 @app.get("/")
-def read_root():
-    return {"message": "Gemini Resume Analyzer is Live!"}
+def health_check():
+    return JSONResponse({"status": "Resume Analyzer API is live 🚀"})
+
+
 
 
 @app.post("/analyze/")
@@ -68,6 +72,9 @@ Job Description:
     except Exception as e:
         return JSONResponse(content={"error": str(e)}, status_code=500)
 
+
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("main:app", host="0.0.0.0", port=int(os.getenv("PORT", 8000)))
+    port = int(os.environ.get("PORT", 8000))
+    uvicorn.run(app, host="0.0.0.0", port=port)
+
