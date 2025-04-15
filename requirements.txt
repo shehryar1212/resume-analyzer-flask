@@ -19,7 +19,6 @@ en_core_web_sm @ https://github.com/explosion/spacy-models/releases/download/en_
 etelemetry==0.3.1
 fastapi==0.115.12
 filelock==3.18.0
-fitz==0.0.1.dev2
 google-ai-generativelanguage==0.6.15
 google-api-core==2.24.2
 google-api-python-client==2.167.0
