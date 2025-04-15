@@ -8,6 +8,7 @@ import os
 
 # Load environment variables from .env file
 load_dotenv()  # Looks for .env in current directory by default
+api_key = os.getenv("GEMINI_API_KEY")
 
 # Access variables
 app = FastAPI()
@@ -15,16 +16,14 @@ app = FastAPI()
 # Allow frontend requests (for React)
 app.add_middleware(
     CORSMiddleware,
+    # allow_origins=["https://ai-resume-analyzer-zeta.vercel.app/"],
     allow_origins=["*"],
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# 🔐 Set your Gemini API Key
-api_key = os.getenv("GEMINI_API_KEY")
-
-model = genai.GenerativeModel("gemini-2.0-flash")
 genai.configure(api_key=api_key)
+model = genai.GenerativeModel("gemini-2.0-flash")
 
 @app.get("/")
 def read_root():
