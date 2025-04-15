@@ -63,7 +63,7 @@ pydantic==2.11.3
 pydantic_core==2.33.1
 pydot==3.0.4
 Pygments==2.19.1
-PyMuPDF==1.23.8
+PyMuPDF==1.25.5
 pyparsing==3.2.3
 python-dateutil==2.9.0.post0
 python-dotenv==1.1.0
