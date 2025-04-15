@@ -5,6 +5,8 @@ import fitz  # PyMuPDF
 import google.generativeai as genai
 from dotenv import load_dotenv
 import os
+from flask_cors import CORS  # Import CORS
+
 
 # Load environment variables from .env file
 load_dotenv()  # Looks for .env in current directory by default
@@ -12,12 +14,14 @@ api_key = os.getenv("GEMINI_API_KEY")
 
 # Access variables
 app = FastAPI()
+CORS(app)  # Enable CORS for all routes
+
 
 # Allow frontend requests (for React)
 app.add_middleware(
     CORSMiddleware,
-    # allow_origins=["https://ai-resume-analyzer-zeta.vercel.app/"],
-    allow_origins=["*"],
+    allow_origins=["https://ai-resume-analyzer-zeta.vercel.app/"],
+    # allow_origins=["*"],
     allow_methods=["*"],
     allow_headers=["*"],
 )
