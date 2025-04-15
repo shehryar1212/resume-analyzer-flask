@@ -22,7 +22,9 @@ app.add_middleware(
 
 genai.configure(api_key=api_key)
 model = genai.GenerativeModel("gemini-2.0-flash")
-
+@app.get("/")
+def read_root():
+    return {"message": "Resume Analyzer API is running"}
 @app.post("/analyze")
 async def analyze_resume(
     file: UploadFile = File(...),
